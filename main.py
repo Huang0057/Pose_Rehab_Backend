@@ -6,11 +6,9 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    # 啟動時連接資料庫
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:    
     await database.connect()
-    yield
-    # 關閉時斷開資料庫連接
+    yield    
     await database.disconnect()
 
 app = FastAPI(lifespan=lifespan)
