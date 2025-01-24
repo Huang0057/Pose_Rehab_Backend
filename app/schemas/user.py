@@ -14,7 +14,8 @@ class UserResponse(BaseModel):
     username: str
     uid: str
     coins: int
-
+    streak_days:int
+    
     class Config:
         
         from_attributes = True  
