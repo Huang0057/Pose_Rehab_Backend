@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     DB_PORT: str
     DB_NAME: str
     SECRET_KEY: str
+    ALGORITHM: str
 
     @property
     def DATABASE_URL(self) -> str:

@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+from typing import Optional
+
 
 class UserRegister(BaseModel):
 
@@ -15,7 +17,9 @@ class UserResponse(BaseModel):
     uid: str
     coins: int
     streak_days:int
+    token: Optional[str] = None
     
     class Config:
         
         from_attributes = True  
+

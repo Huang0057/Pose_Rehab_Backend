@@ -7,7 +7,7 @@ from app.config import settings
 
 SECRET_KEY = settings.SECRET_KEY
 
-ALGORITHM = "HS256"
+ALGORITHM = settings.ALGORITHM
 
 oauth2_scheme = HTTPBearer()
 
@@ -18,7 +18,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(o
         user_id = payload.get("sub")
         user = await get_user_by_id(user_id)
         if not user:
-            raise HTTPException(status_code=401)
+            raise HTTPException(status_code=401, detail="User not found")
         return user
     except JWTError:
         raise HTTPException(status_code=401, detail="認證失敗")

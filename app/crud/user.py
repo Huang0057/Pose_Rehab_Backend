@@ -1,8 +1,5 @@
 from passlib.context import CryptContext
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.models.base import User
 from app.database import database
-from sqlalchemy import func, and_
 from datetime import datetime, timedelta
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -67,3 +64,4 @@ async def get_streak_days(uid: str):
 async def get_user_by_id(uid: str):
    query = "SELECT * FROM users WHERE uid = :uid"
    return await database.fetch_one(query=query, values={"uid": uid})
+
