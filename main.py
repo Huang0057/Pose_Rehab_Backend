@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.endpoints import users, checkin
+from app.api.endpoints import game, users, checkin
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import database
 from contextlib import asynccontextmanager
@@ -25,3 +25,4 @@ app.add_middleware(
 # 路由
 app.include_router(users.router, prefix="/api/users", tags=["users"])
 app.include_router(checkin.router, prefix="/api/checkin", tags=["checkin"])
+app.include_router(game.router,prefix="/api/game",tags=["game"])
