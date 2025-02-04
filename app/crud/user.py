@@ -3,14 +3,17 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import datetime, timedelta
 from app.models.base import User, UserCheckin
+import uuid
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 async def create_user(db: AsyncSession, username: str, password: str):
     hashed_password = pwd_context.hash(password)
+    uid = str(uuid.uuid4())[:8]
     new_user = User(
         username=username,
-        password=hashed_password
+        password=hashed_password,
+        uid=uid
     )
     db.add(new_user)
     await db.commit()

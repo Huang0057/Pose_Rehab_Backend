@@ -16,7 +16,7 @@ class UserResponse(BaseModel):
     username: str
     uid: str
     coins: int
-    streak_days:int
+    streak_days: int | None = None
     token: Optional[str] = None
     
     class Config:
